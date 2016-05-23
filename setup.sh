@@ -10,4 +10,4 @@ set -e
 virtualenv py
 . py/bin/activate
 pip install jupyter
-
+pip install nbstripout
