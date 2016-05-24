@@ -1,6 +1,7 @@
 -- |
 module NB.Plot where
 
+import Numeric.MathFunctions.Comparison
 import Graphics.Rendering.Chart.Easy
 
 -- | List of uniformly spaced points
@@ -52,3 +53,19 @@ plotFunctionsLog funs rng
       | (color,fun) <- cycle [blue,red,green] `zip` funs
       ]
   $ def
+
+
+ulpPlot :: [Double -> Double] -> Double -> Int -> Layout Int Int
+ulpPlot funs x0 n
+  = layout_plots .~
+      [ toPlot $ plot_lines_values .~ [points fun]
+               $ plot_lines_style  .~ (line_color .~ opaque color $ def)
+               $ def
+      | (fun,color) <- funs `zip` cycle [blue,red,green]
+      ]
+  $ def 
+  where
+    y0  = minimum $ map ($ x0) funs
+    points f = [ ( i
+               , fromIntegral $ ulpDistance y0 $ f (addUlps (fromIntegral i) x0))
+               | i <- [0 .. n]]
