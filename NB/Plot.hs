@@ -8,6 +8,16 @@ import Graphics.Rendering.Chart.Easy
 linspace :: (Double,Double) -> Int -> [Double]
 linspace (a,b) n = [a + (b - a) * fromIntegral i / fromIntegral n           | i <- [0 .. n]]
 
+-- | List of uniformly spaced points
+linspaceIntervals :: (Double,Double) -> Int -> [(Double,Double,Double)]
+linspaceIntervals (a,b) n
+  = [ (x, x+d, x + 2*d)
+    | i <- [0 .. n-1]
+    , let x = a + (b - a) * fromIntegral i / fromIntegral n
+    ]
+  where
+    d = (b - a) / (2 * fromIntegral n)
+
 -- | List of uniformly spaced points in log space
 logspace :: (Double,Double) -> Int -> [Double]
 logspace (a,b) n = [exp $ la + (lb - la) * fromIntegral i / fromIntegral n  | i <- [0 .. n]]
