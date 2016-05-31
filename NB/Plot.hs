@@ -20,7 +20,12 @@ linspaceIntervals (a,b) n
 
 -- | List of uniformly spaced points in log space
 logspace :: (Double,Double) -> Int -> [Double]
-logspace (a,b) n = [exp $ la + (lb - la) * fromIntegral i / fromIntegral n  | i <- [0 .. n]]
+logspace (a,b) n
+  = [ case () of
+        _| i == 0    -> a
+         | i == n    -> b
+         | otherwise -> exp $ la + (lb - la) * fromIntegral i / fromIntegral n
+    | i <- [0 .. n]]
   where la = log a
         lb = log b
 
