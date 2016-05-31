@@ -6,8 +6,7 @@ module NB.Heatmap (
   , heat_map_zrange
   , heat_map_values
     -- * Colormaps
-  , greyColormap
-  , blackbodyColormap
+  , module NB.Colormap
   ) where
 
 import Control.Lens
