@@ -4,6 +4,7 @@ module NB.Colormap
   , blackbodyColormap
   ) where
 
+import Data.Array
 import Data.Colour
 import Data.Colour.RGBSpace
 import Data.Colour.RGBSpace.HSL
@@ -21,14 +22,14 @@ blackbodyColormap :: Double -> AlphaColour Double
 blackbodyColormap z
   = opaque $ rgbUsingSpace sRGBSpace (r/255) (g/255) (b/255)
   where
-    i = case ceiling $ z * 250 of
+    i = case ceiling $ z * 240 of
           k | k < 0     -> 0
-            | k > 250   -> 250
+            | k > 250   -> 240
             | otherwise -> k    
-    (r,g,b) = blackBodyColorMap !! i
+    (r,g,b) = blackBodyTable ! i
 
-blackBodyColorMap :: [(Double,Double,Double)]
-blackBodyColorMap =
+blackBodyTable :: Array Int (Double,Double,Double)
+blackBodyTable = listArray (0,255)
   [ (  0,           0,           0)
   , ( 35,           0,           0)
   , ( 52,           0,           0)
