@@ -2,9 +2,9 @@
 """
 """
 
+import sys
 import mpmath as mp
 import numpy  as np
-import sys
 
 
 mp.mp.dps = 60
