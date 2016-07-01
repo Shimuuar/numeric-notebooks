@@ -1,0 +1,21 @@
+Name:           test
+Version:        0.1
+Synopsis:       <<<SYNOPSIS>>>
+Description:
+  <<<DESCRIPTION>>>
+
+Cabal-Version:  >= 1.10
+License:        BSD3
+License-File:   LICENSE
+Author:         Aleksey Khudyakov <alexey.skladnoy@gmail.com>
+Maintainer:     Aleksey Khudyakov <alexey.skladnoy@gmail.com>
+Homepage:       http://bitbucket.org/Shimuuar/math-functions
+Category:       Data
+Build-Type:     Simple
+
+Library
+  Ghc-options:          -Wall
+  Default-Language:    Haskell2010
+  Build-Depends:
+    base >=3 && <5
+  Exposed-modules:
