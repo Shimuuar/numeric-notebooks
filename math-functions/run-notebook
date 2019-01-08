@@ -1,5 +1,5 @@
 #!/bin/sh
 
 set -e
-. ../py/bin/activate
+. py/bin/activate
 stack exec -- jupyter notebook --browser=''
