@@ -21,7 +21,8 @@ fi
 rm -rf .XDG/*
 
 # Install kernels
-ihaskell   install
+#ihaskell install
+ihaskell install -l $(ghc --print-libdir)
 
 # Start jupyter in notebook directory
 jupyter notebook --no-browser

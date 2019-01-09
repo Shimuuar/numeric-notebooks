@@ -11,8 +11,10 @@ mkDerivation {
   version = "0.9.1.0";
   src = fetchgit {
     url    = "https://github.com/gibiansky/IHaskell";
-    sha256 = "05vjzrvhjzd6z30r74nvw316h8xd6m35assy097bzly60j8xw4fc";
-    rev    = "ab98e1b1442b23aba6c7d62b05db930f033dd522";
+    sha256 = "06swyapw8if1rgxpx06vf8r7yj5vb8mpgd9jwkf87zzlq5c2h6hb";
+    rev    = "13632726fe004db0e2869b8666a48da1be79d5f6";
+    # sha256 = "05vjzrvhjzd6z30r74nvw316h8xd6m35assy097bzly60j8xw4fc";
+    # rev    = "ab98e1b1442b23aba6c7d62b05db930f033dd522";
   };
   isLibrary = true;
   isExecutable = true;

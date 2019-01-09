@@ -9,7 +9,7 @@ let
       notebook
     ]);
   # Haskell packages
-  lib             = pkgs.haskell.lib;
+  lib           = pkgs.haskell.lib;
   haskOverrides = {
     overrides = hsNew: hsOld: rec {
       cereal          = lib.dontCheck hsOld.cereal;
@@ -17,11 +17,16 @@ let
       zeromq4-haskell = lib.dontCheck hsOld.zeromq4-haskell;
       ipython-kernel  = hsNew.callPackage ./nix/ipython-kernel.nix {};
       ihaskell        = lib.dontCheck (hsNew.callPackage ./nix/ihaskell.nix {});
+      ghc-parser      = hsNew.callPackage ./nix/ghc-parser.nix {};
     };
   };
-  haskellPackages = pkgs.haskell.packages.ghc844.override haskOverrides;
+  haskellPackages = pkgs.haskell.packages.ghc863.override haskOverrides;
   haskp           = haskellPackages.ghcWithPackages (hp: with hp;
-    [ ihaskell
+    [ ipython-kernel
+      ihaskell
+      #
+      math-functions
+      primitive
     ]);
 in
   pkgs.stdenv.mkDerivation {
@@ -32,7 +37,7 @@ in
     #
     shellHook =
       ''
-      export PYTHONPATH=$PWD
+      export GHC_PACKAGE_PATH=$(echo ${haskp}/lib/*/package.conf.d| tr ' ' ':')
       export XDG_DATA_HOME=$PWD/.XDG
       export JUPYTER_CONFIG_DIR=$PWD/.XDG/jupyter
       '';
