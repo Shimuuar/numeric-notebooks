@@ -3,3 +3,5 @@ py
 *.o
 *.hi
 data/
+dist-newstyle
+.XDG
